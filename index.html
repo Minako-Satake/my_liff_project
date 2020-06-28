@@ -78,6 +78,7 @@
     <img id="profile_img" class="profile" src=""/>
     <h2 id="profile_name"></h2>
     <p>LIFFの作成を色々と試すためのページです。</p>
+    <button class="btn" id="shareFriends">友だちにシェア</button>
     <button class="btn" id="closeWindowButton">close</button>
   </body>
   
@@ -112,6 +113,21 @@
       }
     }
     
+    function shareFriends() {
+      if (liff.isApiAvailable('shareTargetPicker')){
+        liff.shareTargetPicker(
+          [{
+            type: 'text',
+            text: 'https://liff.line.me/1653746756-2Lrl3yld'
+          }]
+        ).then(function() {
+        }).catch(function(error) {
+          window.alert('シェア機能でエラーが起こりました：'+ error);
+        });
+      };
+    }
+    
+    document.querySelector("#shareFriends").addEventListener("click", shareFriends)
     document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
     
   </script>
