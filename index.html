@@ -77,27 +77,13 @@
     <img id="profile_img" class="profile" src=""/>
     <h2 id="profile_name"></h2>
     <p>LIFFの作成を色々と試すためのページです。</p>
+    <button class="btn" id="closeWindowButton">close</button>
   </body>
+  
   <script>
-    // My LIFF ID
     const liffId = "1654391458-ZXkyBBy8"
     const Name = document.getElementById('profile_name');
     const Img = document.getElementById("profile_img");
-
-//     function shareFriends() {
-//       if (liff.isApiAvailable('shareTargetPicker')){
-//         liff.shareTargetPicker(
-//           [{
-//             type: 'text',
-//             text: '見てほしい！　https://liff.line.me/1654261210-n9Rg63eM'
-//           }]
-//         ).then(function() {
-//           // window.alert('シェアしました');
-//         }).catch(function(error) {
-//           window.alert('シェア機能でエラーが起こりました：'+ error);
-//         });
-//       };
-//     }
 
     liff.init({liffId}).then(() => {
       if (liff.isLoggedIn()) {
@@ -105,8 +91,6 @@
           .then(profile => {
             const name = profile.displayName;
             const pic = profile.pictureUrl;
-            console.log('name', name);
-            console.log('pic', pic);
             Name.innerHTML = name;
             Img.src = pic;
           })
@@ -118,9 +102,17 @@
         liff.login();
       }
     })
-
-    // Declaration to bind buttons and callbacks
-//     document.querySelector("#shareFriends").addEventListener("click", shareFriends)
-
+    
+    function closeWindow() {
+      if (!liff.isInClient()) {
+          sendAlertIfNotInClient();
+      } else {
+          liff.closeWindow();
+      }
+    }
+    
+    document.getElementById('closeWindowButton').addEventListener('click', closeWindow)
+    
   </script>
+  
 </html>
