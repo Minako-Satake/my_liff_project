@@ -101,10 +101,12 @@
         console.log("idToken", idToken)
         liff.getProfile()
           .then(profile => {
+            console.log("hello3")
             const name = profile.displayName;
             const pic = profile.pictureUrl;
             Name.innerHTML = name;
             Img.src = pic;
+            console.log("name", name)
           })
           .catch((err) => {
             console.log('error', err);
