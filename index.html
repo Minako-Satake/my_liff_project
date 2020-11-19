@@ -98,7 +98,7 @@
       if (liff.isLoggedIn()) {
         console.log("hello2")
         const idToken = liff.getDecodedIDToken();
-        console.log(idToken)
+        console.log("idToken", idToken)
         liff.getProfile()
           .then(profile => {
             const name = profile.displayName;
