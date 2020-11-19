@@ -94,7 +94,9 @@
     const Img = document.getElementById("profile_img");
 
     liff.init({liffId}).then(() => {
+      console.log("hello")
       if (liff.isLoggedIn()) {
+        console.log("hello2")
         const idToken = liff.getDecodedIDToken();
         console.log(idToken)
         liff.getProfile()
